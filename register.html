@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | The Stays</title>
+
+  <!-- Fonts & Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <section class="register">
+    <div class="register__container">
+      <h2>Register</h2>
+
+      <form id="registerForm">
+  <div class="input__group">
+    <i class="ri-user-3-line"></i>
+    <input type="text" id="username" required />
+    <label>Full Name</label>
+  </div>
+
+  <div class="input__group">
+    <i class="ri-mail-line"></i>
+    <input type="email" id="email" required />
+    <label>Email Address</label>
+  </div>
+
+  <div class="input__group">
+    <i class="ri-lock-2-line"></i>
+    <input type="password" id="password" required />
+    <label>Password</label>
+  </div>
+
+  <button type="submit" class="btn btn__full">Register</button>
+</form>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <h2>🎉 Congratulations!</h2>
+      <p id="popupMessage"></p>
+      <button id="okBtn">Okay</button>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+</html>
