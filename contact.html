@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | The Stays</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= CONTACT HERO ================= -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <h1>Contact Us</h1>
+    <p>We’re here to assist you. Reach out for support, feedback, or inquiries.</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT CARDS ================= -->
+<section class="section contact__cards">
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <i class="ri-mail-line"></i>
+      <h4>Email Us</h4>
+      <p>support@thestays.com</p>
+    </div>
+
+    <div class="contact-card">
+      <i class="ri-phone-line"></i>
+      <h4>Call Us</h4>
+      <p>+91 8010863766</p>
+    </div>
+
+    <div class="contact-card">
+      <i class="ri-map-pin-line"></i>
+      <h4>Visit Us</h4>
+      <p>123 Luxury Street, Pune, India</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT FORM ================= -->
+<section class="section contact-form-section">
+  <h2 class="section__header">Send a Message</h2>
+  <p class="section__description">Have questions? Drop us a message and we'll get back to you shortly.</p>
+
+  <form class="contact-form">
+    <div class="form-group">
+      <input type="text" placeholder="Your Name" required>
+    </div>
+    <div class="form-group">
+      <input type="email" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Subject" required>
+    </div>
+    <div class="form-group">
+      <textarea placeholder="Your Message" rows="6" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- ...keep the rest of your contact.html as is... -->
+
+<!-- ================= MESSAGE SENT MODAL ================= -->
+<div id="messageModal" class="modal">
+  <div class="modal-content">
+    <i class="ri-mail-send-line modal-icon"></i>
+    <h3>Thank You!</h3>
+    <p>Your message has been sent successfully.</p>
+    <a href="index.html" class="modal-btn">
+      <i class="ri-home-5-line"></i> Back to Home
+    </a>
+  </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  const form = document.querySelector('.contact-form');
+  const modal = document.getElementById('messageModal');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); // prevent page refresh
+
+    // Show modal
+    modal.style.display = 'flex';
+  });
+
+  // Close modal when clicking outside content
+  modal.addEventListener('click', function(e){
+    if(e.target === modal){
+      modal.style.display = 'none';
+    }
+  });
+</script>
+
+
+</body>
+</html>
