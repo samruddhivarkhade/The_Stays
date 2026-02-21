@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Stay | The Stays</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ================= BOOK HERO ================= -->
+<section class="book-hero">
+  <div class="book-hero-content">
+    <h1>Book Your Luxury Stay</h1>
+    <p>Find the perfect hotel or villa and reserve your spot in a few easy steps.</p>
+  </div>
+</section>
+
+<!-- ================= BOOKING FORM ================= -->
+<section class="section book-section">
+  <div class="book-container">
+
+    <form class="book-form" id="bookingForm">
+      <h2 class="form-title">Booking Details</h2>
+
+      <label for="hotel">Select Hotel</label>
+      <select id="hotel" required>
+        <option value="">Choose your hotel</option>
+        <option value="royal-grand" data-price="24000">Royal Grand Palace</option>
+        <option value="blue-bay" data-price="18000">Royal Blue Bay Resort</option>
+        <option value="urban-suites" data-price="22000">Royal Urban Suites</option>
+        <option value="urban-suites" data-price="22000">Imperial Orchid Retreat</option>
+        <option value="urban-suites" data-price="22000">Azure Horizon Hotel</option>
+        <option value="urban-suites" data-price="22000">Velvet Crown Residency</option>
+      </select>
+      </select>
+
+      </select>
+
+      </select>
+
+      <label for="checkin">Check-In Date</label>
+      <input type="date" id="checkin" required>
+
+      <label for="checkout">Check-Out Date</label>
+      <input type="date" id="checkout" required>
+
+      <label for="guests">Guests</label>
+      <input type="number" id="guests" min="1" max="10" value="1" required>
+
+      <button type="submit">Reserve Now</button>
+    </form>
+
+    <div class="book-summary" id="bookingSummary">
+      <h2>Your Booking Summary</h2>
+      <p>Select hotel, dates, and guests to see your booking details here.</p>
+      <ul>
+        <li>Hotel: <span id="summaryHotel">—</span></li>
+        <li>Check-In: <span id="summaryCheckin">—</span></li>
+        <li>Check-Out: <span id="summaryCheckout">—</span></li>
+        <li>Guests: <span id="summaryGuests">—</span></li>
+      </ul>
+      <p class="total">Total: <span id="summaryTotal">₹—</span></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Booking Confirmation Popup -->
+<div id="booking-popup" class="booking-popup">
+  <div class="popup-content">
+    <i class="ri-mail-send-line"></i>
+    <h3>Thank You!</h3>
+    <p>Your booking has been confirmed.</p>
+    <button onclick="closePopup()">🏠 Back to Home</button>
+  </div>
+</div>
+
+
+<script>
+  // ===== Booking Summary =====
+  const hotelSelect = document.getElementById('hotel');
+  const checkinInput = document.getElementById('checkin');
+  const checkoutInput = document.getElementById('checkout');
+  const guestsInput = document.getElementById('guests');
+
+  const summaryHotel = document.getElementById('summaryHotel');
+  const summaryCheckin = document.getElementById('summaryCheckin');
+  const summaryCheckout = document.getElementById('summaryCheckout');
+  const summaryGuests = document.getElementById('summaryGuests');
+  const summaryTotal = document.getElementById('summaryTotal');
+
+  function updateSummary() {
+    const hotelOption = hotelSelect.selectedOptions[0];
+    const hotelName = hotelOption.text;
+    const pricePerNight = parseInt(hotelOption.dataset.price) || 0;
+
+    const checkin = new Date(checkinInput.value);
+    const checkout = new Date(checkoutInput.value);
+    const guests = guestsInput.value;
+
+    summaryHotel.textContent = hotelName !== "Choose your hotel" ? hotelName : "—";
+    summaryCheckin.textContent = checkinInput.value || "—";
+    summaryCheckout.textContent = checkoutInput.value || "—";
+    summaryGuests.textContent = guests;
+
+    // Calculate total
+    if (checkinInput.value && checkoutInput.value && checkout > checkin) {
+      const nights = (checkout - checkin) / (1000 * 60 * 60 * 24);
+      summaryTotal.textContent = `₹${pricePerNight * nights}`;
+    } else {
+      summaryTotal.textContent = "₹—";
+    }
+  }
+
+  hotelSelect.addEventListener('change', updateSummary);
+  checkinInput.addEventListener('change', updateSummary);
+  checkoutInput.addEventListener('change', updateSummary);
+  guestsInput.addEventListener('input', updateSummary);
+
+  // ===== Popup =====
+  const bookingForm = document.getElementById('bookingForm');
+  const bookingPopup = document.getElementById('bookingPopup');
+
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    bookingPopup.style.display = 'flex';
+  });
+
+  function closePopup() {
+    bookingPopup.style.display = 'none';
+    window.location.href = "index.html"; // redirect to home
+  }
+
+  // Grab elements
+const reserveBtn = document.querySelector(".book-form button");
+const popup = document.getElementById("booking-popup");
+
+// When Reserve Now is clicked
+reserveBtn.addEventListener("click", function(e) {
+  e.preventDefault(); // Prevent form submission
+  popup.style.display = "flex"; // Show popup
+});
+
+// Close popup function
+function closePopup() {
+  popup.style.display = "none";
+  window.location.href = "index.html"; // Redirect to home
+}
+
+</script>
+
+</body>
+</html>
